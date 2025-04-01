@@ -6,6 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
+	httpClient "github.com/tiendat-go/core-service/internal/client/http"
+
 	"github.com/gin-gonic/gin"
 	http2 "github.com/tiendat-go/core-service/internal/controller/http"
 	"github.com/tiendat-go/core-service/internal/core/config"
@@ -16,6 +18,8 @@ import (
 )
 
 func main() {
+	httpClient.NewRegistryClient("http://localhost:9999", "core-service", "9090")
+
 	// Create a new instance of the Gin router
 	instance := gin.New()
 	instance.Use(gin.Recovery())

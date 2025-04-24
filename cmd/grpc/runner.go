@@ -19,7 +19,8 @@ import (
 )
 
 func main() {
-	registryClient := grpcClient.NewRegistryClient("localhost:50051", "core-service", "9090")
+	cfg := config.InitConfig()
+	registryClient := grpcClient.NewRegistryClient(cfg)
 	notificationClient := grpcClient.NewNotificationClient(registryClient)
 	res, err := notificationClient.GetNotifications(&pbNotification.GetNotificationsRequest{UserId: "1"})
 	if err != nil {
